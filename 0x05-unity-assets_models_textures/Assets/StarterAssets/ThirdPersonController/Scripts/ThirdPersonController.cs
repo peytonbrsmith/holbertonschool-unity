@@ -19,6 +19,10 @@ namespace StarterAssets
 		public float MoveSpeed = 2.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 5.335f;
+		[Tooltip("Sprint speed of the character in m/s")]
+		public float DashSpeed = 15f;
+
+
 		[Tooltip("How fast the character turns to face movement direction")]
 		[Range(0.0f, 0.3f)]
 		public float RotationSmoothTime = 0.12f;
@@ -36,6 +40,7 @@ namespace StarterAssets
 		public float JumpTimeout = 0.50f;
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
+		private float DashTimeout = 0.0f;
 
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -69,11 +74,13 @@ namespace StarterAssets
 		private float _targetRotation = 0.0f;
 		private float _rotationVelocity;
 		private float _verticalVelocity;
+		private float _horizontalVelocity;
 		private float _terminalVelocity = 53.0f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+		private float _dashTimeoutDelta;
 
 		// animation IDs
 		private int _animIDSpeed;
@@ -116,10 +123,12 @@ namespace StarterAssets
 		private void Update()
 		{
 			_hasAnimator = TryGetComponent(out _animator);
-			
+
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Dash();
+
 		}
 
 		private void LateUpdate()
@@ -213,11 +222,10 @@ namespace StarterAssets
 				transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 			}
 
-
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
 			// move the player
-			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f + _horizontalVelocity, _verticalVelocity, 0.0f) * Time.deltaTime);
 
 			// update animator if using character
 			if (_hasAnimator)
@@ -225,6 +233,76 @@ namespace StarterAssets
 				_animator.SetFloat(_animIDSpeed, _animationBlend);
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
+		}
+
+		private void Dash()
+		{
+			if (Grounded)
+			{
+				// reset the fall timeout timer
+				// _fallTimeoutDelta = FallTimeout;
+
+				// update animator if using character
+				if (_hasAnimator)
+				{
+					_animator.SetBool(_animIDJump, false);
+					_animator.SetBool(_animIDFreeFall, false);
+				}
+
+				// stop our velocity dropping infinitely when grounded
+				if (_horizontalVelocity < 0.0f)
+				{
+					_horizontalVelocity = 0f;
+				}
+
+				// Jump
+				if (_input.dash && _dashTimeoutDelta <= 0.0f)
+				{
+					// the square root of H * -2 * G = how much velocity needed to reach desired height
+					_horizontalVelocity = Mathf.Sqrt(JumpHeight);
+
+					// update animator if using character
+					if (_hasAnimator)
+					{
+						_animator.SetBool(_animIDJump, true);
+					}
+				}
+
+				// jump timeout
+				if (_dashTimeoutDelta >= 0.0f)
+				{
+					_dashTimeoutDelta -= Time.deltaTime;
+				}
+			}
+			else
+			{
+
+				// reset the jump timeout timer
+				_dashTimeoutDelta = DashTimeout;
+
+				// fall timeout
+				// if (_fallTimeoutDelta >= 0.0f)
+				// {
+				// 	_fallTimeoutDelta -= Time.deltaTime;
+				// }
+				// else
+				// {
+				// 	// update animator if using character
+				// 	if (_hasAnimator)
+				// 	{
+				// 		_animator.SetBool(_animIDFreeFall, true);
+				// 	}
+				// }
+
+				// if we are not grounded, do not jump
+				_input.dash = false;
+			}
+
+			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
+			// if (_verticalVelocity < _terminalVelocity)
+			// {
+			// 	_verticalVelocity += Gravity * Time.deltaTime;
+			// }
 		}
 
 		private void JumpAndGravity()
@@ -268,6 +346,7 @@ namespace StarterAssets
 			}
 			else
 			{
+
 				// reset the jump timeout timer
 				_jumpTimeoutDelta = JumpTimeout;
 
@@ -310,7 +389,7 @@ namespace StarterAssets
 
 			if (Grounded) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
-			
+
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
