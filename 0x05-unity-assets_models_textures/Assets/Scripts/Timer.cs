@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     private Stopwatch timer = new Stopwatch();
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         timer.Start();
     }
@@ -19,5 +19,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timerText.text = timer.Elapsed.Minutes + ":" + timer.Elapsed.Seconds.ToString("D2") + "." + timer.Elapsed.Milliseconds.ToString("D");
+    }
+
+    // reset timer
+    public void ResetTimer()
+    {
+        timer.Reset();
     }
 }
