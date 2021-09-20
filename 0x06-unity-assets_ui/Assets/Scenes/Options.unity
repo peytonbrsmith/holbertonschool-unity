@@ -2423,6 +2423,18 @@ PrefabInstance:
       value: ApplyButton
       objectReference: {fileID: 0}
     - target: {fileID: 3582072436424663596, guid: 6eb173f2a5746aa44826798f1da27bce, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582072436424663596, guid: 6eb173f2a5746aa44826798f1da27bce, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 1641548200286959669, guid: 945a2a369f6807048ad49c9094eceb4d, type: 3}
+    - target: {fileID: 3582072436424663596, guid: 6eb173f2a5746aa44826798f1da27bce, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 8440510077267459181, guid: 945a2a369f6807048ad49c9094eceb4d, type: 3}
+    - target: {fileID: 3582072436424663596, guid: 6eb173f2a5746aa44826798f1da27bce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2631,6 +2643,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6482337281215716991, guid: 8f4e036a60b97c546af93aea64f2df47, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482337281215716991, guid: 8f4e036a60b97c546af93aea64f2df47, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 1641548200286959669, guid: 945a2a369f6807048ad49c9094eceb4d, type: 3}
+    - target: {fileID: 6482337281215716991, guid: 8f4e036a60b97c546af93aea64f2df47, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 8440510077267459181, guid: 945a2a369f6807048ad49c9094eceb4d, type: 3}
     - target: {fileID: 6482337281215716991, guid: 8f4e036a60b97c546af93aea64f2df47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
