@@ -75,7 +75,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2.02
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 30
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
@@ -98,12 +98,12 @@ MonoBehaviour:
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   JumpHeight: 4
-  Gravity: -30
+  Gravity: -50
   JumpTimeout: 0
   FallTimeout: 0
   Grounded: 1
-  GroundedOffset: 0.85
-  GroundedRadius: 0.28
+  GroundedOffset: 0.64
+  GroundedRadius: 0.46
   GroundLayers:
     serializedVersion: 2
     m_Bits: 513
