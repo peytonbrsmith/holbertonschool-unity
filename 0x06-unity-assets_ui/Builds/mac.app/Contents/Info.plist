@@ -5,17 +5,17 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleExecutable</key>
-    <string>0x05-unity-assets_models_textures</string>
+    <string>Simple Platformer</string>
     <key>CFBundleGetInfoString</key>
     <string>Unity Player version 2020.3.12f1 (b3b2c6512326). (c) 2021 Unity Technologies ApS. All rights reserved.</string>
     <key>CFBundleIconFile</key>
     <string>PlayerIcon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.DefaultCompany.0x05-unity-assetsmodelstextures</string>
+    <string>com.PeytonSmith.SimplePlatformer</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>0x05-unity-assets_models_textures</string>
+    <string>Simple Platformer</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>

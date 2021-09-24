@@ -5,11 +5,31 @@ using StarterAssets;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GameObject TouchCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().OnApplicationFocus(true);
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(true);
+        if (PlayerPrefs.GetInt("useTouch") == 0)
+        {
+            GetComponent<StarterAssetsInputs>().cursorInputForLook = true;
+            GetComponent<StarterAssetsInputs>().OnApplicationFocus(true);
+            GetComponent<StarterAssetsInputs>().SetCursorState(true);
+            GetComponent<StarterAssetsInputs>().cursorLocked = false;
+        }
+        else
+        {
+            GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
+            GetComponent<StarterAssetsInputs>().OnApplicationFocus(false);
+            GetComponent<StarterAssetsInputs>().SetCursorState(false);
+            GetComponent<StarterAssetsInputs>().cursorLocked = false;
+        }
+
+        if (PlayerPrefs.GetInt("useTouch") == 1)
+        {
+            TouchCanvas.SetActive(true);
+        }
     }
 
     // Update is called once per frame

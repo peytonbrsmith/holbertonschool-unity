@@ -7,8 +7,10 @@ public class OptionsMenu : MonoBehaviour
 {
 
     public bool isInverted;
+    public bool useTouch;
 
     public GameObject yToggle;
+    public GameObject tToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,16 @@ public class OptionsMenu : MonoBehaviour
         {
             yToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
             isInverted = false;
+        }
+        if (PlayerPrefs.GetInt("useTouch") == 1)
+        {
+            tToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
+            useTouch = true;
+        }
+        else
+        {
+            tToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+            useTouch = false;
         }
     }
 
@@ -40,7 +52,22 @@ public class OptionsMenu : MonoBehaviour
 
     public void Apply()
     {
-        applyInvertY();
+        if (isInverted)
+        {
+            PlayerPrefs.SetInt("invertedY", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("invertedY", 0);
+        }
+        if (useTouch)
+        {
+            PlayerPrefs.SetInt("useTouch", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("useTouch", 0);
+        }
         SceneManager.LoadScene(PlayerPrefs.GetString("lastSceneName"));
     }
 
@@ -50,15 +77,9 @@ public class OptionsMenu : MonoBehaviour
         isInverted = !isInverted;
     }
 
-    private void applyInvertY()
+    public void ToggleTouch()
     {
-        if (isInverted)
-        {
-            PlayerPrefs.SetInt("invertedY", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("invertedY", 0);
-        }
+        Debug.Log("Toggle Touch");
+        useTouch = !useTouch;
     }
 }

@@ -9,7 +9,7 @@ using StarterAssets;
 public class PauseMenu : MonoBehaviour
 {
 
-    private bool pauseState = false;
+    public bool pauseState = false;
     private Timer timer;
     public GameObject pauseMenu;
 
@@ -30,8 +30,9 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         pauseState = true;
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().OnApplicationFocus(false);
         GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(false);
+		GameObject.Find("Player").GetComponent<StarterAssetsInputs>().cursorLocked = false;
+
         pauseMenu.SetActive(true);
         timer.PauseTimer();
         Time.timeScale = 0;
@@ -41,8 +42,11 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseState = false;
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().OnApplicationFocus(true);
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(true);
+        if (PlayerPrefs.GetInt("useTouch") == 0)
+        {
+			GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(true);
+			GameObject.Find("Player").GetComponent<StarterAssetsInputs>().cursorLocked = true;
+        }
         // SceneManager.UnloadSceneAsync("Paused");
         pauseMenu.SetActive(false);
         timer.Start();
@@ -50,17 +54,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     // get unity input pause
-    public void OnPause(InputValue value)
-    {
-        if (value.isPressed && !pauseState)
-        {
-            Pause();
-        }
-        else if (value.isPressed && pauseState)
-        {
-            Resume();
-        }
-    }
+
 
     public void OnRestart(InputValue value)
     {
@@ -78,9 +72,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        Resume();
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().OnApplicationFocus(false);
-        GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(false);
+		Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 

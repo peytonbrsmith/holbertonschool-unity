@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool dash;
+		public bool pause;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -23,7 +24,11 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 #endif
 
+		private GameObject player;
+
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -52,10 +57,10 @@ namespace StarterAssets
 			DashInput(value.isPressed);
 		}
 
-		// public void OnPause(InputValue value)
-		// {
-		// 	Debug.Log(value.isPressed);
-		// }
+		public void OnPause(InputValue value)
+		{
+			PauseInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -89,12 +94,17 @@ namespace StarterAssets
 			dash = newDashState;
 		}
 
+		public void PauseInput(bool newPauseState)
+		{
+			player = GameObject.Find("Player");
+			player.GetComponent<PauseMenu>().Pause();
+		}
+
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		public void OnApplicationFocus(bool hasFocus)
 		{
-			if (Time.timeScale == 1)
-				SetCursorState(cursorLocked);
+			SetCursorState(cursorLocked);
 		}
 
 		public void SetCursorState(bool newState)
