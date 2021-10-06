@@ -1,5 +1,5 @@
-# 0x05-unity-assets_models_textures
-This repo is for Holberton's 0x05-unity-assets_models_textures project
+# 0x07-unity-animation
+This repo is for Holberton's 0x07-unity-animation project
 
 
 
