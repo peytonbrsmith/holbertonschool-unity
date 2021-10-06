@@ -20827,6 +20827,10 @@ PrefabInstance:
       propertyPath: cursorInputForLook
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6080318232124154124, guid: c35b4c33e6ca25a4497c92e5452fab0d, type: 3}
+      propertyPath: strength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7029860868453919497, guid: c35b4c33e6ca25a4497c92e5452fab0d, type: 3}
       propertyPath: m_RootOrder
       value: 5
