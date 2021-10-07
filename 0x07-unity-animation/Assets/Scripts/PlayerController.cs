@@ -52,6 +52,14 @@ public class PlayerController : MonoBehaviour
             GetComponent<CharacterController>().enabled = false;
             transform.position = new Vector3(0, 1.25f, 0);
             GetComponent<CharacterController>().enabled = true;
+            // GetComponent<ThirdPersonController>().enabled = false;
+            // StartCoroutine(WaitForRespawn());
         }
+    }
+
+    IEnumerator WaitForRespawn()
+    {
+        yield return new WaitForSeconds(5);
+        GetComponent<ThirdPersonController>().enabled = true;
     }
 }
