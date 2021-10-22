@@ -80,7 +80,7 @@ MonoBehaviour:
   JumpHeight: 4
   Gravity: -50
   JumpTimeout: 0
-  FallTimeout: 1
+  FallTimeout: 1.5
   Moving: 0
   Grounded: 1
   GroundedOffset: 0.76
