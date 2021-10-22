@@ -22559,10 +22559,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3588265528793675770, guid: c35b4c33e6ca25a4497c92e5452fab0d, type: 3}
-      propertyPath: FallTimeout
-      value: 1.25
-      objectReference: {fileID: 0}
     - target: {fileID: 3800679606590432760, guid: c35b4c33e6ca25a4497c92e5452fab0d, type: 3}
       propertyPath: m_Enabled
       value: 1

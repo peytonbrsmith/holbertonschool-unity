@@ -504,6 +504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2251243495879182365, guid: aac33e8e828a48848abcfc03584c180c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8048935936164409840, guid: 193460c7ab53c0746b5ecfff5c7da275, type: 2}
     - target: {fileID: 2251243496643049060, guid: aac33e8e828a48848abcfc03584c180c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -552,6 +556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuSFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2251243496785760482, guid: aac33e8e828a48848abcfc03584c180c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8048935936164409840, guid: 193460c7ab53c0746b5ecfff5c7da275, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac33e8e828a48848abcfc03584c180c, type: 3}
 --- !u!82 &151190782 stripped
@@ -2854,8 +2862,6 @@ MonoBehaviour:
   tToggle: {fileID: 1993239103}
   bgmSlider: {fileID: 1189981004}
   sfxSlider: {fileID: 38524931}
-  bgmVol: 0
-  sfxVol: 0
   mixer: {fileID: 24100000, guid: 193460c7ab53c0746b5ecfff5c7da275, type: 2}
 --- !u!1001 &1965493624378063923
 PrefabInstance:

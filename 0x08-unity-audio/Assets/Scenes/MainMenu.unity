@@ -1589,6 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669db8a70ade68747869e089aa9a9230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 193460c7ab53c0746b5ecfff5c7da275, type: 2}
 --- !u!1001 &1817963017512242724
 PrefabInstance:
   m_ObjectHideFlags: 0

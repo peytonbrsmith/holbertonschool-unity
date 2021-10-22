@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public AudioMixer mixer;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        mixer.SetFloat("bgmVol", LinearToDecibel(PlayerPrefs.GetFloat("bgmVol")));
+        mixer.SetFloat("sfxVol", LinearToDecibel(PlayerPrefs.GetFloat("sfxVol")));
+        mixer.FindSnapshot("Normal").TransitionTo(0.0F);
     }
 
     // Update is called once per frame
@@ -32,5 +40,17 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Exited");
         Application.Quit();
+    }
+
+    private float LinearToDecibel(float linear)
+    {
+        float dB;
+
+        if (linear != 0)
+            dB = 20.0f * Mathf.Log10(linear);
+        else
+            dB = -144.0f;
+
+        return dB;
     }
 }

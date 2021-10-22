@@ -80,7 +80,7 @@ MonoBehaviour:
   JumpHeight: 4
   Gravity: -50
   JumpTimeout: 0
-  FallTimeout: 0
+  FallTimeout: 1
   Moving: 0
   Grounded: 1
   GroundedOffset: 0.76
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseState: 0
   pauseMenu: {fileID: 2634182987702348608, guid: 694014ad94e75b94fac8417d514987a6, type: 3}
+  mixer: {fileID: 24100000, guid: 193460c7ab53c0746b5ecfff5c7da275, type: 2}
 --- !u!114 &3800679606590432760
 MonoBehaviour:
   m_ObjectHideFlags: 0

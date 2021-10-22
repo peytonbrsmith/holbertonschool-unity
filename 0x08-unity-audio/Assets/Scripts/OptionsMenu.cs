@@ -17,16 +17,17 @@ public class OptionsMenu : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    public float bgmVol;
-    public float sfxVol;
-
     public AudioMixer mixer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        mixer.FindSnapshot("Normal").TransitionTo(0.0F);
         bgmSlider.value = PlayerPrefs.GetFloat("bgmVol");
         sfxSlider.value = PlayerPrefs.GetFloat("sfxVol");
+        Debug.Log(LinearToDecibel(bgmSlider.value));
+        mixer.SetFloat("bgmVol", LinearToDecibel(bgmSlider.value));
+        mixer.SetFloat("sfxVol", LinearToDecibel(sfxSlider.value));
         if (PlayerPrefs.GetInt("invertedY") == 1)
         {
             yToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
@@ -106,7 +107,7 @@ public class OptionsMenu : MonoBehaviour
         if (linear != 0)
             dB = 20.0f * Mathf.Log10(linear);
         else
-            dB = -144.0f;
+            dB = -80.0f;
 
         return dB;
     }

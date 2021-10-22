@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using StarterAssets;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     public bool pauseState = false;
     private Timer timer;
     public GameObject pauseMenu;
+
+    public AudioMixer mixer;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class PauseMenu : MonoBehaviour
         pauseState = true;
         GameObject.Find("Player").GetComponent<StarterAssetsInputs>().SetCursorState(false);
 		GameObject.Find("Player").GetComponent<StarterAssetsInputs>().cursorLocked = false;
-
+        mixer.FindSnapshot("Muffled").TransitionTo(0.0F);
         pauseMenu.SetActive(true);
         timer.PauseTimer();
         Time.timeScale = 0;
@@ -41,6 +44,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        mixer.FindSnapshot("Normal").TransitionTo(0.0F);
         pauseState = false;
         if (PlayerPrefs.GetInt("useTouch") == 0)
         {
