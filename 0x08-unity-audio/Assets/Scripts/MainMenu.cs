@@ -14,12 +14,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetFloat("bgmVol", 2.0F) == 2.0F)
-        {
-            mixer.SetFloat("bgmVol", LinearToDecibel(PlayerPrefs.GetFloat("bgmVol")));
-            mixer.SetFloat("sfxVol", LinearToDecibel(PlayerPrefs.GetFloat("sfxVol")));
-            mixer.FindSnapshot("Normal").TransitionTo(0.0F);
-        }
+        mixer.SetFloat("bgmVol", LinearToDecibel(PlayerPrefs.GetFloat("bgmVol")));
+        mixer.SetFloat("sfxVol", LinearToDecibel(PlayerPrefs.GetFloat("sfxVol")));
+        mixer.FindSnapshot("Normal").TransitionTo(0.0F);
     }
 
     // Update is called once per frame
