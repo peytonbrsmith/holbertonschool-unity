@@ -12,12 +12,18 @@ public class NavAI : MonoBehaviour
     private Transform target;
     private NavMeshAgent agent;
     private float timer;
+    private sling _sling;
 
     // Use this for initialization
     void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
+    }
+
+    private void Start()
+    {
+        _sling = FindObjectOfType<sling>();
     }
 
     // Update is called once per frame
@@ -44,5 +50,14 @@ public class NavAI : MonoBehaviour
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
 
         return navHit.position;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if  (collision.collider.tag == "ammo")
+        {
+            Destroy(gameObject);
+            _sling.score += 10;
+        }
     }
 }

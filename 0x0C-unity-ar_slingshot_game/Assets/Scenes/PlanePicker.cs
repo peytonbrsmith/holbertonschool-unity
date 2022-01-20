@@ -88,7 +88,7 @@ public class PlanePicker : MonoBehaviour
                 Destroy(plane.gameObject);
             }
         }
-
+        this.enabled = false;
         _arPlaneManager.enabled = false;
     }
 
@@ -106,6 +106,7 @@ public class PlanePicker : MonoBehaviour
     {
         _surfaces[0] = chosenPlane.gameObject;
         BakeAtRuntime();
+        chosenPlane.gameObject.GetComponent<MeshRenderer>().enabled = false;
         spawnedField = Instantiate(gamefield, chosenPlane.center, Quaternion.Euler(0,0,0));
     }
 
